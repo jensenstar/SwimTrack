@@ -11,4 +11,10 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    <string name="number_of_times">Number of times</string>
+    <string name="hint">hint</string>
+    <string name="pool_size">Pool size</string>
+    <string name="distance">Distance</string>
+    <string name="send_to_server">Send to server</string>
 </resources>
