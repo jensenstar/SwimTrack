@@ -5,7 +5,8 @@ plugins {
 
 android {
     namespace = "com.example.swimtrack"
-    compileSdk = 34
+    compileSdk = 35
+
 
     defaultConfig {
         applicationId = "com.example.swimtrack"
@@ -51,7 +52,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(libs.androidx.compose.ui)
+//    implementation(libs.androidx.compose.ui)
 }
 java {
     toolchain {

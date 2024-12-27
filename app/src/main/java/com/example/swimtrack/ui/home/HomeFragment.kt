@@ -12,6 +12,7 @@ import com.example.swimtrack.databinding.FragmentHomeBinding
 import okhttp3.*
 import okhttp3.FormBody
 import java.io.IOException
+import android.util.Log
 
 class HomeFragment : Fragment() {
 
@@ -32,7 +33,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val numberOfTimesInput = binding.numberOfTimesInput.editText // Получите доступ к TextInputEditText внутри TextInputLayout
+        val numberOfTimesInput = binding.numberOfTimesInput.editText
         val poolSizeInput = binding.poolSizeInput.editText
         val distanceInput = binding.distanceInput.editText
 
@@ -44,7 +45,6 @@ class HomeFragment : Fragment() {
 
             // Отправьте данные на сервер
             sendDataToServer(numberOfTimes, poolSize, distance)
-
         }
 
         val textView: TextView = binding.textHome
@@ -63,17 +63,19 @@ class HomeFragment : Fragment() {
             .build()
 
         val request = Request.Builder()
-            .url("http://192.168.1.9:1880/data")
+            .url("http://192.168.1.6:1880/data")
             .post(requestBody)
             .build()
 
+        Log.d("HomeFragment", "Отправка запроса: $requestBody")
+
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                // Обработка ошибки
+                Log.e("HomeFragment", "Ошибка запроса: ${e.message}", e) // Логирование ошибки
             }
 
             override fun onResponse(call: Call, response: Response) {
-                // Обработка ответа
+                Log.d("HomeFragment", "Ответ получен: ${response.body?.string()}") // Логирование ответа
             }
         })
     }
